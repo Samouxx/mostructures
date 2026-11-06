@@ -9,15 +9,16 @@ import net.minecraft.core.registries.Registries;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.level.levelgen.structure.Structure;
 import net.minecraft.world.level.levelgen.structure.StructureType;
+import net.minecraft.world.level.levelgen.structure.placement.StructurePlacementType;
 
 public class Structures {
     public static final TagKey<Structure> NO_LAKES = TagKey.create(Registries.STRUCTURE, MoStructures.id("no_lakes"));
 
     public static StructureType<ModStructure> GENERIC;
+    public static StructurePlacementType<ModStructurePlacement> TYPE;
 
     public static void init() {
         GENERIC = Registry.register(BuiltInRegistries.STRUCTURE_TYPE, MoStructures.id("generic"), () -> ModStructure.CODEC);
-        // Since 26.3, structure placement types are registered directly as codecs
-        Registry.register(BuiltInRegistries.STRUCTURE_PLACEMENT, MoStructures.id("type"), ModStructurePlacement.CODEC);
+        TYPE = Registry.register(BuiltInRegistries.STRUCTURE_PLACEMENT, MoStructures.id("type"), () -> ModStructurePlacement.CODEC);
     }
 }

@@ -19,11 +19,8 @@
         {
           "type": "minecraft:husk",
           "weight": 1,
-          "count": {
-            "type": "minecraft:uniform",
-            "min_inclusive": 5,
-            "max_inclusive": 7
-          }
+          "minCount": 5,
+          "maxCount": 7
         }
       ]
     }

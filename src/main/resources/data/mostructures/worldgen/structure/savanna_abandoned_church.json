@@ -24,11 +24,8 @@
         {
           "type": "minecraft:zombie",
           "weight": 1,
-          "count": {
-            "type": "minecraft:uniform",
-            "min_inclusive": 3,
-            "max_inclusive": 7
-          }
+          "minCount": 3,
+          "maxCount": 7
         }
       ]
     }

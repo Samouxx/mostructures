@@ -19,12 +19,14 @@
         {
           "type": "minecraft:stray",
           "weight": 1,
-          "count": 2
+          "minCount": 2,
+          "maxCount": 2
         },
         {
           "type": "minecraft:creeper",
           "weight": 1,
-          "count": 1
+          "minCount": 1,
+          "maxCount": 1
         }
       ]
     }

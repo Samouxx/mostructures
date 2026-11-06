@@ -6,16 +6,18 @@ import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import io.github.frqnny.mostructures.MoStructures;
 import io.github.frqnny.mostructures.config.StructureConfigEntry;
+import io.github.frqnny.mostructures.init.Structures;
 import net.minecraft.core.Holder;
 import net.minecraft.core.Vec3i;
 import net.minecraft.core.registries.Registries;
-import net.minecraft.core.registries.codec.RegistryFileCodec;
+import net.minecraft.resources.RegistryFileCodec;
 import net.minecraft.util.ExtraCodecs;
 import net.minecraft.world.level.chunk.ChunkGeneratorStructureState;
 import net.minecraft.world.level.levelgen.structure.StructureSet;
-import net.minecraft.world.level.levelgen.structure.placement.AbstractSpreadingStructurePlacement.FrequencyReductionMethod;
 import net.minecraft.world.level.levelgen.structure.placement.RandomSpreadStructurePlacement;
 import net.minecraft.world.level.levelgen.structure.placement.RandomSpreadType;
+import net.minecraft.world.level.levelgen.structure.placement.StructurePlacement.FrequencyReductionMethod;
+import net.minecraft.world.level.levelgen.structure.placement.StructurePlacementType;
 
 import java.util.List;
 import java.util.Optional;
@@ -105,10 +107,8 @@ public class ModStructurePlacement extends RandomSpreadStructurePlacement {
         return true;
     }
 
-    // The parent returns MapCodec<RandomSpreadStructurePlacement>, and Java generics do not allow a narrower type here
-    @SuppressWarnings("unchecked")
     @Override
-    public MapCodec<RandomSpreadStructurePlacement> codec() {
-        return (MapCodec<RandomSpreadStructurePlacement>) (MapCodec<?>) CODEC;
+    public StructurePlacementType<?> type() {
+        return Structures.TYPE;
     }
 }
