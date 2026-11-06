@@ -27,7 +27,7 @@
     "fabricloader": ">=${loader_version}",
     "fabric-api": "*",
     "java": ">=21",
-    "minecraft": "~${minecraft_version}"
+    "minecraft": ">=1.21.9 <1.21.11"
   },
   "mixins": [
     "mostructures.mixins.json"

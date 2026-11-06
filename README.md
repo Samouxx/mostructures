@@ -1,12 +1,12 @@
 # Mo' Structures (26.x port)
 
-> **Unofficial port to Minecraft 1.21.11 (Fabric).**
+> **Unofficial port to Minecraft 1.21.9 and 1.21.10 (Fabric).**
 > This is a modified version of [Mo' Structures](https://github.com/frqnny/mostructures) by **Frqnny**,
 > ported by **Samouxx** in October 2026. The original mod stopped at Minecraft 1.21.8.
 > Please report problems with this port [here](https://github.com/Samouxx/mostructures/issues), not to the original author.
 >
 > Changes from the original 1.6.0:
-> - ported to Minecraft 1.21.11, Fabric only (the NeoForge build was dropped), single Gradle module;
+> - ported to Minecraft 1.21.9 - 1.21.10, Fabric only (the NeoForge build was dropped), single Gradle module;
 > - no longer requires Architectury API or Omega Config (Fabric API is still required);
 > - config: same file (`config/mostructures-config-v5.json5`), but only `activated` is used. The `spacing` and `separation`
 >   values never changed where structures generate (the game reads the `worldgen/structure_set` files), and they made

@@ -6,7 +6,7 @@ import com.mojang.serialization.codecs.RecordCodecBuilder;
 import io.github.frqnny.mostructures.init.Structures;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Holder;
-import net.minecraft.resources.Identifier;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.ChunkPos;
 import net.minecraft.world.level.LevelHeightAccessor;
 import net.minecraft.world.level.chunk.ChunkGenerator;
@@ -32,7 +32,7 @@ public class ModStructure extends Structure {
     public static final MapCodec<ModStructure> CODEC = RecordCodecBuilder.mapCodec(instance -> instance.group(
             settingsCodec(instance),
             StructureTemplatePool.CODEC.fieldOf("start_pool").forGetter(structure -> structure.startPool),
-            Identifier.CODEC.optionalFieldOf("start_jigsaw_name").forGetter(structure -> structure.startJigsawName),
+            ResourceLocation.CODEC.optionalFieldOf("start_jigsaw_name").forGetter(structure -> structure.startJigsawName),
             Codec.intRange(0, 7).fieldOf("size").forGetter(structure -> structure.size),
             HeightProvider.CODEC.fieldOf("start_height").forGetter(structure -> structure.startHeight),
             Codec.BOOL.fieldOf("use_expansion_hack").forGetter(structure -> structure.useExpansionHack),
@@ -48,7 +48,7 @@ public class ModStructure extends Structure {
 
     private final Holder<StructureTemplatePool> startPool;
     private final int heightRange;
-    private final Optional<Identifier> startJigsawName;
+    private final Optional<ResourceLocation> startJigsawName;
     private final int size;
     private final HeightProvider startHeight;
     private final boolean useExpansionHack;
@@ -58,7 +58,7 @@ public class ModStructure extends Structure {
     private final DimensionPadding dimensionPadding;
     private final LiquidSettings liquidSettings;
 
-    public ModStructure(Structure.StructureSettings config, Holder<StructureTemplatePool> startPool, Optional<Identifier> startJigsawName, int size, HeightProvider startHeight, boolean useExpansionHack, Optional<Heightmap.Types> projectStartToHeightmap, JigsawStructure.MaxDistance maxDistanceFromCenter, int heightRange, List<PoolAliasBinding> poolAliasBindings, DimensionPadding dimensionPadding, LiquidSettings liquidSettings) {
+    public ModStructure(Structure.StructureSettings config, Holder<StructureTemplatePool> startPool, Optional<ResourceLocation> startJigsawName, int size, HeightProvider startHeight, boolean useExpansionHack, Optional<Heightmap.Types> projectStartToHeightmap, JigsawStructure.MaxDistance maxDistanceFromCenter, int heightRange, List<PoolAliasBinding> poolAliasBindings, DimensionPadding dimensionPadding, LiquidSettings liquidSettings) {
         super(config);
         this.startPool = startPool;
         this.startJigsawName = startJigsawName;
