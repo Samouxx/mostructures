@@ -3,6 +3,7 @@ package io.github.frqnny.mostructures.processor;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
+import io.github.frqnny.mostructures.init.ProcessorTypes;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.util.RandomSource;
@@ -14,10 +15,11 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.Half;
 import net.minecraft.world.level.levelgen.structure.templatesystem.StructurePlaceSettings;
 import net.minecraft.world.level.levelgen.structure.templatesystem.StructureProcessor;
+import net.minecraft.world.level.levelgen.structure.templatesystem.StructureProcessorType;
 import net.minecraft.world.level.levelgen.structure.templatesystem.StructureTemplate;
 import org.jetbrains.annotations.Nullable;
 
-public class SimpleStoneStructureProcessor implements StructureProcessor {
+public class SimpleStoneStructureProcessor extends StructureProcessor {
     public static final MapCodec<SimpleStoneStructureProcessor> CODEC = RecordCodecBuilder.mapCodec((proc) -> proc.group(
             Codec.FLOAT.fieldOf("mossiness").forGetter(processor -> processor.mossiness)
     ).apply(proc, SimpleStoneStructureProcessor::new));
@@ -37,7 +39,7 @@ public class SimpleStoneStructureProcessor implements StructureProcessor {
 
     @Nullable
     @Override
-    public StructureTemplate.StructureBlockInfo processBlock(LevelReader worldView, BlockPos pos, BlockPos blockPos, BlockPos originalPos, StructureTemplate.StructureBlockInfo structureBlockInfo2, StructurePlaceSettings structurePlacementData) {
+    public StructureTemplate.StructureBlockInfo processBlock(LevelReader worldView, BlockPos pos, BlockPos blockPos, StructureTemplate.StructureBlockInfo structureBlockInfo, StructureTemplate.StructureBlockInfo structureBlockInfo2, StructurePlaceSettings structurePlacementData) {
         RandomSource random = structurePlacementData.getRandom(structureBlockInfo2.pos());
         BlockState blockState = structureBlockInfo2.state();
         BlockPos blockPos2 = structureBlockInfo2.pos();
@@ -66,8 +68,8 @@ public class SimpleStoneStructureProcessor implements StructureProcessor {
     }
 
     @Override
-    public MapCodec<SimpleStoneStructureProcessor> codec() {
-        return CODEC;
+    protected StructureProcessorType<?> getType() {
+        return ProcessorTypes.SIMPLE_STONE;
     }
 
 
