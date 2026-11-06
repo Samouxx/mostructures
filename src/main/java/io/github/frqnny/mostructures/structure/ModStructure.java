@@ -93,8 +93,8 @@ public class ModStructure extends Structure {
             int maxTerrainHeight = Integer.MIN_VALUE;
             int minTerrainHeight = Integer.MAX_VALUE;
 
-            for (int curChunkX = pos.x() - 2; curChunkX <= pos.x() + 2; curChunkX++) {
-                for (int curChunkZ = pos.z() - 2; curChunkZ <= pos.z() + 2; curChunkZ++) {
+            for (int curChunkX = pos.x - 2; curChunkX <= pos.x + 2; curChunkX++) {
+                for (int curChunkZ = pos.z - 2; curChunkZ <= pos.z + 2; curChunkZ++) {
                     int height = chunkGenerator.getBaseHeight((curChunkX << 4) + 7, (curChunkZ << 4) + 7, Heightmap.Types.WORLD_SURFACE_WG, world, noiseConfig);
                     maxTerrainHeight = Math.max(maxTerrainHeight, height);
                     minTerrainHeight = Math.min(minTerrainHeight, height);

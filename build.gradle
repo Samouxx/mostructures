@@ -1,5 +1,5 @@
 plugins {
-    id 'net.fabricmc.fabric-loom' version "${loom_version}"
+    id 'net.fabricmc.fabric-loom-remap' version "${loom_version}"
 }
 
 base {
@@ -7,11 +7,12 @@ base {
 }
 
 dependencies {
-    // Minecraft 26.x is no longer obfuscated: no mappings line, the game already uses Mojang's names
     minecraft "com.mojang:minecraft:${minecraft_version}"
-    implementation "net.fabricmc:fabric-loader:${loader_version}"
+    // Before 26.x the game is obfuscated: Mojang's official names, the same as in the 26.x code
+    mappings loom.officialMojangMappings()
+    modImplementation "net.fabricmc:fabric-loader:${loader_version}"
     // Fabric API loads the mod's data/ folder (structures, loot tables, worldgen) like a data pack
-    implementation "net.fabricmc.fabric-api:fabric-api:${fabric_api_version}"
+    modImplementation "net.fabricmc.fabric-api:fabric-api:${fabric_api_version}"
 }
 
 processResources {
@@ -25,7 +26,7 @@ processResources {
 
 tasks.withType(JavaCompile).configureEach {
     options.encoding = "UTF-8"
-    options.release = 25
+    options.release = 21
 }
 
 java {
